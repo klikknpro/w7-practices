@@ -21,7 +21,7 @@ const name = () => {}; methodkent nem hasznalhato, kevesebb kod, szebb, atlathat
 
 */
 
-const input = (type, name, label) => {
+const inputElement = (type, name, label) => {
   return `
     <div>
       <label for="${name}">${label}</label>
@@ -30,20 +30,45 @@ const input = (type, name, label) => {
     `;
 };
 
-const form = `
+const formElement = `
   <form id="form">
-    ${input("text", "firstName", "Keresztnev")}
-    ${input("file", "profilePic", "Profilkeped")}
-    ${input("email", "personalEmail", "Email cimed")}
-    ${input("radio", "newsletter", "Szeretnel hirlevelet???")}
-    ${input("checkbox", "terms", "Fogadd el!")}
+    ${inputElement("text", "firstName", "Keresztnev")}
+    ${inputElement("file", "profilePic", "Profilkeped")}
+    ${inputElement("email", "personalEmail", "Email cimed")}
+    ${inputElement("radio", "newsletter", "Szeretnel hirlevelet???")}
+    ${inputElement("checkbox", "terms", "Fogadd el!")}
     <button>OK</button>
   </form>
   `;
 
+const formSubmit = (event) => {
+  event.preventDefault();
+  console.log(event);
+  event.target.classList.add("submit");
+};
+
+const inputEvent = (event) => {
+  console.log(event.target.value); // csak az input mezoknek van value-ja
+  document.getElementById("inputValueContent").innerHTML = event.target.value;
+};
+
 function init() {
   const root = document.getElementById("root");
-  root.insertAdjacentHTML("beforeend", form);
+  root.insertAdjacentHTML("beforeend", formElement);
+  root.insertAdjacentHTML(
+    "beforeend",
+    `
+    <div id="inputValueContent"></div>
+    `
+  );
+
+  const form = document.getElementById("form");
+  form.addEventListener("submit", formSubmit);
+
+  const inputList = form.querySelectorAll("input");
+  for (const input of inputList) {
+    input.addEventListener("input", inputEvent);
+  }
 }
 
 window.addEventListener("load", init);
