@@ -39,9 +39,6 @@ button,
 textarea,
 input,
 select {
-  appearance: none !important;
-  -webkit-appearance: none !important;
-  /* safari, opera, chrome miatt */
   border-radius: 0;
 }
 
@@ -54,7 +51,7 @@ select {
 #root {
   height: 100vh;
   width: 100vw;
-  padding: 50px;
+  padding: 30px;
   background: linear-gradient(#141e30, #364c66);
 }
 
@@ -64,7 +61,8 @@ h1 {
 
 form {
   width: 500px;
-  height: 500px;
+  height: 600px;
+  padding: 15px;
   position: relative;
   top: 45%;
   left: 50%;
@@ -78,11 +76,39 @@ form {
   color: whitesmoke;
 }
 
+form div {
+  position: relative;
+  left: 90px;
+  padding: 20px;
+}
+
+label {
+  font-size: 16px;
+}
+
 input[type="text"],
 input[type="email"] {
   width: 50%;
+  height: 2rem;
   display: block;
   border-bottom: 2px solid whitesmoke;
+  font-size: 16px;
+}
+
+/* input[type="text"] ~ label {
+  color: #03e9f4;
+} */
+input[type="checkbox"] {
+  margin-left: 20px;
+}
+
+select {
+  margin-left: 20px;
+  width: 100px;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  visibility: hidden;
 }
 
 button {
