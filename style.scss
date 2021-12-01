@@ -69,6 +69,7 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 
   border: 2px solid rgba(47, 79, 79, 0.141);
   border-radius: 20px;
@@ -81,7 +82,11 @@ form {
 
 input[type="text"],
 input[type="email"] {
-  display: block;
+  display: inline-block;
+}
+
+label {
+  padding: 15px;
 }
 
 button {
@@ -93,4 +98,7 @@ button {
   border: 1px solid rgba(47, 79, 79, 0.141);
 
   font-size: 16px;
+  color: whitesmoke;
+
+  background-color: #93a393;
 }
