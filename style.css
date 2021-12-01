@@ -43,11 +43,49 @@ textarea,
 select {
   appearance: none !important;
   -webkit-appearance: none !important; safari, opera, chrome miatt
-  border-radius: 0;
+border-radius: 0;
 }
 
 CSS reset */
+* {
+  font-family: "Rubik", sans-serif;
+}
+
+#root {
+  height: 80vh;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ebeaf0;
+}
+
 form {
-  border: 2px solid darkslategrey;
+  width: 70vh;
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 2px solid rgba(47, 79, 79, 0.141);
+  border-radius: 20px;
+  box-shadow: 0 0 20px #928ea3;
+  background-color: #f0ded1;
+  font-size: 18px;
+  font-style: italic;
+}
+
+input[type="text"],
+input[type="email"] {
+  display: block;
+}
+
+button {
+  width: 100px;
+  height: 30px;
+  align-self: center;
+  border-radius: 5px;
+  border: 1px solid rgba(47, 79, 79, 0.141);
+  font-size: 16px;
 }
 /*# sourceMappingURL=style.css.map */

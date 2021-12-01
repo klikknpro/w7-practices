@@ -30,13 +30,33 @@ const inputElement = (type, name, label) => {
     `;
 };
 
+const selectElement = (type, name, label, selectOptions) => {
+  let optionElements = "";
+  for (const option of selectOptions) {
+    optionElements += `<option>${option}</option>`;
+  }
+  return `
+    <div>
+      <label for="${name}">${label}</label>
+      <${type} name="${name}">
+        ${optionElements}
+      </${type}>
+    </div>
+    `;
+};
+
+/*
+const formElement = crap + crap + crap ...
+*/
+
 const formElement = `
   <form id="form">
     ${inputElement("text", "firstName", "Keresztnev")}
     ${inputElement("file", "profilePic", "Profilkeped")}
     ${inputElement("email", "personalEmail", "Email cimed")}
-    ${inputElement("radio", "newsletter", "Szeretnel hirlevelet???")}
+    ${inputElement("checkbox", "newsletter", "Szeretnel hirlevelet???")}
     ${inputElement("checkbox", "terms", "Fogadd el!")}
+    ${selectElement("select", "where", "Hol hallottal rolunk?", ["internet", "ismeros", "egyeb"])}
     <button>OK</button>
   </form>
   `;
@@ -44,12 +64,23 @@ const formElement = `
 const formSubmit = (event) => {
   event.preventDefault();
   console.log(event);
-  event.target.classList.add("submit");
+  const et = event.target;
+  et.classList.add("submitted");
+  const etValue = et.querySelector(`select[name="where"]`).value;
+  console.log(etValue);
 };
 
 const inputEvent = (event) => {
-  console.log(event.target.value); // csak az input mezoknek van value-ja
-  document.getElementById("inputValueContent").innerHTML = event.target.value;
+  //const fName = document.querySelector(`input[name="firstName"]`);
+  //const tryForm = fName.closest("#form"); // kereses az event.target-en belul
+  // console.log(event);
+  // console.log("event.target =  " + event.target);
+  const tryForm = event.target.closest("#form"); // ugyanaz mint az fName-el :O :O :?
+  console.log(tryForm);
+
+  if (event.target.getAttribute("name") === "firstName") {
+    document.getElementById("inputValueContent").innerHTML = event.target.value;
+  }
 };
 
 function init() {
@@ -63,7 +94,7 @@ function init() {
   );
 
   const form = document.getElementById("form");
-  form.addEventListener("submit", formSubmit);
+  form.addEventListener("submit", formSubmit); // catch the default submit and modify
 
   const inputList = form.querySelectorAll("input");
   for (const input of inputList) {
