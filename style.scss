@@ -79,6 +79,7 @@ h1 {
 
 form {
   position: absolute;
+  width: 350px;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -145,16 +146,18 @@ button {
 
 form div.file {
   position: relative; // mert absolute lesz a benne levo input formazasa
-  // width: 100%;
+  width: 250px;
   height: 60px;
-  margin: 20px 0;
+  margin: 10px auto;
   padding-bottom: 50px;
 
   background-color: #03e9f4;
 
+  color: rgb(47, 79, 79);
+
   &::after {
     // & scss-ben az elozo selectorhoz hozzailleszti
-    content: "drag & drop or click";
+    content: "kattints vagy huzd ide";
     display: block;
     padding: 5px;
     text-align: center;
@@ -162,8 +165,10 @@ form div.file {
   }
 
   label {
-    color: whitesmoke;
     display: block;
+
+    font-size: 18px;
+    color: rgb(47, 79, 79);
     text-align: center;
   }
 
@@ -175,6 +180,11 @@ form div.file {
     top: 0;
     z-index: 99;
     opacity: 0;
+    font-size: 16px;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 

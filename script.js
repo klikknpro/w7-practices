@@ -86,7 +86,7 @@ const formFields = [
   {
     type: "file",
     name: "profilePic",
-    label: "Profilkeped",
+    label: "Profilkep",
   },
   {
     type: "email",

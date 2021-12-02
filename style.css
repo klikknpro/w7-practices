@@ -75,6 +75,7 @@ h1 {
 
 form {
   position: absolute;
+  width: 350px;
   top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -132,14 +133,16 @@ button {
 
 form div.file {
   position: relative;
+  width: 250px;
   height: 60px;
-  margin: 20px 0;
+  margin: 10px auto;
   padding-bottom: 50px;
   background-color: #03e9f4;
+  color: darkslategray;
 }
 
 form div.file::after {
-  content: "drag & drop or click";
+  content: "kattints vagy huzd ide";
   display: block;
   padding: 5px;
   text-align: center;
@@ -147,8 +150,9 @@ form div.file::after {
 }
 
 form div.file label {
-  color: whitesmoke;
   display: block;
+  font-size: 18px;
+  color: darkslategray;
   text-align: center;
 }
 
@@ -160,6 +164,11 @@ form div.file input[type="file"] {
   top: 0;
   z-index: 99;
   opacity: 0;
+  font-size: 16px;
+}
+
+form div.file input[type="file"]:hover {
+  cursor: pointer;
 }
 
 #inputValueContent img {
