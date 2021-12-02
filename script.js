@@ -21,11 +21,12 @@ const name = () => {}; methodkent nem hasznalhato, kevesebb kod, szebb, atlathat
 
 */
 
-const inputElement = (type, name, label) => {
+const inputElement = (type, name, label, req = "") => {
+  console.log(req);
   return `
     <div>
       <label for="${name}">${label}</label>
-      <input type="${type}" name="${name}">
+      <input type="${type}" name="${name}" ${req}>
     </div>
     `;
 };
@@ -46,20 +47,68 @@ const selectElement = (type, name, label, selectOptions) => {
 };
 
 /*
-const formElement = crap + crap + crap ...
+const nameData = {
+  type: "text",
+  name: "firstName",
+  label: "Keresztneved",
+};
 */
 
-const formElement = `
+const formFields = [
+  {
+    type: "text",
+    name: "firstName",
+    label: "Keresztneved",
+  },
+  {
+    type: "file",
+    name: "profilePic",
+    label: "Profilkeped",
+  },
+  {
+    type: "email",
+    name: "personalEmail",
+    label: "Email cimed",
+    required: "required",
+  },
+  {
+    type: "checkbox",
+    name: "newsletter",
+    label: "Szeretnel hirlevelet, ugye?!!",
+  },
+  {
+    type: "checkbox",
+    name: "terms",
+    label: "Fogadd el!!!",
+    required: "required",
+  },
+];
+
+/* const formElement = `
   <form id="form">
-    ${inputElement("text", "firstName", "Keresztnev")}
+    ${inputElement(nameData.type, nameData.name, nameData.label)}
     ${inputElement("file", "profilePic", "Profilkeped")}
-    ${inputElement("email", "personalEmail", "Email cimed")}
+    ${inputElement("email", "personalEmail", "Email cimed", "required")}
     ${inputElement("checkbox", "newsletter", "Szeretnel hirlevelet???")}
-    ${inputElement("checkbox", "terms", "Fogadd el!")}
+    ${inputElement("checkbox", "terms", "Fogadd el!", "required")}
+    ${selectElement("select", "where", "Hol hallottal rolunk?", ["internet", "ismeros", "egyeb"])}
+    <button>OK</button>
+  </form>
+  `; */
+
+const formElement = (ffs) => {
+  let toForm = "";
+  for (const ff of ffs) {
+    toForm += inputElement(ff.type, ff.name, ff.label, ff.required);
+  }
+  return `
+  <form id="form">
+    ${toForm}
     ${selectElement("select", "where", "Hol hallottal rolunk?", ["internet", "ismeros", "egyeb"])}
     <button>OK</button>
   </form>
   `;
+};
 
 const formSubmit = (event) => {
   event.preventDefault();
@@ -88,7 +137,7 @@ function init() {
   const container = document.createElement("div");
   container.classList.add("container");
   root.appendChild(container);
-  container.insertAdjacentHTML("beforeend", formElement);
+  container.insertAdjacentHTML("beforeend", formElement(formFields));
   container.insertAdjacentHTML(
     "beforeend",
     `
