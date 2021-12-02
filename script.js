@@ -24,7 +24,7 @@ const name = () => {}; methodkent nem hasznalhato, kevesebb kod, szebb, atlathat
 const inputElement = (type, name, label, req = "") => {
   console.log(req);
   return `
-    <div>
+    <div class="${type}">
       <label for="${name}">${label}</label>
       <input type="${type}" name="${name}" ${req}>
     </div>
@@ -153,6 +153,18 @@ const inputEvent = (event) => {
   if (event.target.getAttribute("name") === "firstName") {
     document.getElementById("inputValueContent").innerHTML = event.target.value;
   }
+
+  if (event.target.getAttribute("name") === "profilePic") {
+    console.log(event.target.files[0].name);
+    const image = URL.createObjectURL(event.target.files[0]);
+    document.getElementById("inputValueContent").insertAdjacentHTML(
+      "beforeend",
+      `
+      <img src="${image}">
+    `
+    );
+    console.log(image);
+  }
 };
 
 function init() {
@@ -161,7 +173,7 @@ function init() {
   container.classList.add("container");
   root.appendChild(container);
   container.insertAdjacentHTML("beforeend", formElement(formFields, "form"));
-  container.insertAdjacentHTML("beforeend", formElement(anotherFormFields, "form2"));
+  // container.insertAdjacentHTML("beforeend", formElement(anotherFormFields, "form2"));
   container.insertAdjacentHTML(
     "beforeend",
     `

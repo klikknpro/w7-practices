@@ -142,3 +142,44 @@ button {
 
   background-color: #03e9f4;
 }
+
+form div.file {
+  position: relative; // mert absolute lesz a benne levo input formazasa
+  // width: 100%;
+  height: 60px;
+  margin: 20px 0;
+  padding-bottom: 50px;
+
+  background-color: #03e9f4;
+
+  &::after {
+    // & scss-ben az elozo selectorhoz hozzailleszti
+    content: "drag & drop or click";
+    display: block;
+    padding: 5px;
+    text-align: center;
+    font-size: 14px;
+  }
+
+  label {
+    color: whitesmoke;
+    display: block;
+    text-align: center;
+  }
+
+  input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    opacity: 0;
+  }
+}
+
+#inputValueContent img {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+}
