@@ -54,6 +54,29 @@ const nameData = {
 };
 */
 
+const anotherFormFields = [
+  {
+    type: "text",
+    name: "street",
+    label: "Kozterulet neve",
+  },
+  {
+    type: "text",
+    name: "houseNumber",
+    label: "Hazszam",
+  },
+  {
+    type: "number",
+    name: "zipCode",
+    label: "Iranyitoszam",
+  },
+  {
+    type: "text",
+    name: "city",
+    label: "Telepules neve",
+  },
+];
+
 const formFields = [
   {
     type: "text",
@@ -96,13 +119,13 @@ const formFields = [
   </form>
   `; */
 
-const formElement = (ffs) => {
+const formElement = (ffs, id) => {
   let toForm = "";
   for (const ff of ffs) {
     toForm += inputElement(ff.type, ff.name, ff.label, ff.required);
   }
   return `
-  <form id="form">
+  <form id="${id}">
     ${toForm}
     ${selectElement("select", "where", "Hol hallottal rolunk?", ["internet", "ismeros", "egyeb"])}
     <button>OK</button>
@@ -137,7 +160,8 @@ function init() {
   const container = document.createElement("div");
   container.classList.add("container");
   root.appendChild(container);
-  container.insertAdjacentHTML("beforeend", formElement(formFields));
+  container.insertAdjacentHTML("beforeend", formElement(formFields, "form"));
+  container.insertAdjacentHTML("beforeend", formElement(anotherFormFields, "form2"));
   container.insertAdjacentHTML(
     "beforeend",
     `
