@@ -85,8 +85,11 @@ const inputEvent = (event) => {
 
 function init() {
   const root = document.getElementById("root");
-  root.insertAdjacentHTML("beforeend", formElement);
-  root.insertAdjacentHTML(
+  const container = document.createElement("div");
+  container.classList.add("container");
+  root.appendChild(container);
+  container.insertAdjacentHTML("beforeend", formElement);
+  container.insertAdjacentHTML(
     "beforeend",
     `
     <div id="inputValueContent"></div>

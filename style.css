@@ -59,9 +59,9 @@ h1 {
   text-align: center;
 }
 
-form {
+.container {
   width: 500px;
-  height: 600px;
+  height: 625px;
   padding: 15px;
   position: relative;
   top: 45%;
@@ -71,14 +71,19 @@ form {
   border-radius: 20px;
   box-shadow: 0 0 20px #928ea3;
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+form {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 18px;
   font-style: italic;
   color: whitesmoke;
 }
 
 form div {
-  position: relative;
-  left: 90px;
   padding: 20px;
 }
 
@@ -88,7 +93,7 @@ label {
 
 input[type="text"],
 input[type="email"] {
-  width: 50%;
+  width: 100%;
   height: 2rem;
   display: block;
   border-bottom: 2px solid whitesmoke;
@@ -107,15 +112,14 @@ select {
   width: 100px;
 }
 
-input[type="file"]::-webkit-file-upload-button {
+/* input[type="file"] {
   visibility: hidden;
-}
-
+} */
 button {
   width: 130px;
   height: 40px;
+  margin-top: 25px;
   position: absolute;
-  top: 85%;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 5px;
