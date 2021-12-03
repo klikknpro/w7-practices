@@ -1,3 +1,10 @@
 # template-repo
 
-ha az aktuális inputnak a name attribútuma "firstName" csak akkor írja bele ebbe a div-be a tartalmat
+Fetch:
+
+1. letölteni az adatot
+2. lépés a sémám szerint rendezem (példányosítom a sémámat)
+   Richárd Atom11:36 AM
+3. a sémából készült objektum példányomat átadom a megjelenítését felelő függvénynek
+4. a megjelenítésért felelő függvény HTML-tre formázza a séma alapján elkészült objektumomat
+5. beillesztem a index.html-be

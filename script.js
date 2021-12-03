@@ -77,6 +77,49 @@ const anotherFormFields = [
   },
 ];
 
+const processCountries = async () => {
+  const countryRes = await fetch("https://restcountries.com/v3.1/all"); //response
+  const countryArr = await countryRes.json();
+  // console.log(countryArr[0].name.official);
+  /*
+  kell egy ures tomb
+  for ciklussal vegigmenni a countryArr-on, majd minden orszag name.official megy az ures tombbe (eredmeny: legordulo menuben orszagok listaja)
+  return the tomb
+  */
+  let countryOptions = [];
+  for (const country of countryArr) {
+    let countryName = country.name.official;
+    countryOptions.push(countryName);
+  }
+
+  return countryOptions;
+};
+
+const temp = processCountries();
+console.log(temp);
+
+// processCountries();
+
+/*
+const anotherSelectFields = {
+  type: "select",
+  name: "countries",
+  label: "orszag",
+  options: ["Canada", "Jamaica"],
+  // options: processCountries(),
+};
+*/
+
+const anotherSelectFields = async () => {
+  // ez mar a 3-ik promise, jeeesus
+  return {
+    type: "select",
+    name: "countries",
+    label: "orszag",
+    options: await processCountries(),
+  };
+};
+
 const formFields = [
   {
     type: "text",
@@ -107,6 +150,13 @@ const formFields = [
   },
 ];
 
+const selectFields = {
+  type: "select",
+  name: "where",
+  label: "Hol hallottal rolunk?",
+  options: ["internet", "ismeros", "egyeb"],
+};
+
 /* const formElement = `
   <form id="form">
     ${inputElement(nameData.type, nameData.name, nameData.label)}
@@ -119,7 +169,7 @@ const formFields = [
   </form>
   `; */
 
-const formElement = (ffs, id) => {
+const formElement = (ffs, id, sel) => {
   let toForm = "";
   for (const ff of ffs) {
     toForm += inputElement(ff.type, ff.name, ff.label, ff.required);
@@ -127,7 +177,7 @@ const formElement = (ffs, id) => {
   return `
   <form id="${id}">
     ${toForm}
-    ${selectElement("select", "where", "Hol hallottal rolunk?", ["internet", "ismeros", "egyeb"])}
+    ${selectElement(sel.type, sel.name, sel.label, sel.options)}
     <button>OK</button>
   </form>
   `;
@@ -167,13 +217,16 @@ const inputEvent = (event) => {
   }
 };
 
-function init() {
+async function init() {
+  // ez meg mar egy 4-ik promise ocseeem
+  const waitForAnotherSelectFields = await anotherSelectFields(); // ide jon vissza a countryOptions
+
   const root = document.getElementById("root");
   const container = document.createElement("div");
   container.classList.add("container");
   root.appendChild(container);
-  container.insertAdjacentHTML("beforeend", formElement(formFields, "form"));
-  // container.insertAdjacentHTML("beforeend", formElement(anotherFormFields, "form2"));
+  // container.insertAdjacentHTML("beforeend", formElement(formFields, "form", selectFields));
+  container.insertAdjacentHTML("beforeend", formElement(anotherFormFields, "form2", waitForAnotherSelectFields));
   container.insertAdjacentHTML(
     "beforeend",
     `
@@ -181,7 +234,7 @@ function init() {
     `
   );
 
-  const form = document.getElementById("form");
+  const form = document.getElementById("form2");
   form.addEventListener("submit", formSubmit); // catch the default submit and modify
 
   const inputList = form.querySelectorAll("input");
